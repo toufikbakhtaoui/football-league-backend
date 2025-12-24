@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: football-league-backend
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080

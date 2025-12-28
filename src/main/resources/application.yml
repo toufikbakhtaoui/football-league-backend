@@ -1,4 +1,7 @@
 spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
   application:
     name: football-league-backend
   jpa:

@@ -1,0 +1,43 @@
+CREATE TABLE team
+(
+    id         BIGINT PRIMARY KEY,
+    name       TEXT NOT NULL,
+    city       TEXT NOT NULL,
+    stadium    TEXT NOT NULL,
+    conference TEXT NOT NULL,
+    division   TEXT NOT NULL
+);
+
+INSERT INTO team (id, name, city, stadium, conference, division)
+VALUES (1, 'patriots', 'new england', 'gillette stadium', 'AFC', 'EAST'),
+       (2, 'dolphins', 'miami', 'hard rock stadium', 'AFC', 'EAST'),
+       (3, 'bills', 'buffalo', 'new era field', 'AFC', 'EAST'),
+       (4, 'jets', 'new york', 'metlife stadium', 'AFC', 'EAST'),
+       (5, 'ravens', 'baltimore', 'm&t bank stadium', 'AFC', 'NORTH'),
+       (6, 'steelers', 'pittsburgh', 'heinz field', 'AFC', 'NORTH'),
+       (7, 'bengals', 'cincinnati', 'paul brown stadium', 'AFC', 'NORTH'),
+       (8, 'browns', 'cleveland', 'first energy stadium', 'AFC', 'NORTH'),
+       (9, 'texans', 'houston', 'nrg stadium', 'AFC', 'SOUTH'),
+       (10, 'titans', 'tennessee', 'nissan stadium', 'AFC', 'SOUTH'),
+       (11, 'colts', 'indianapolis', 'lucas oil stadium', 'AFC', 'SOUTH'),
+       (12, 'jaguars', 'jacksonville', 'ever bank field', 'AFC', 'SOUTH'),
+       (13, 'chiefs', 'kansas city', 'arrowhead stadium', 'AFC', 'WEST'),
+       (14, 'raiders', 'las vegas', 'oakland–alameda county coliseum', 'AFC', 'WEST'),
+       (15, 'broncos', 'denver', 'sports authority field at mile high', 'AFC', 'WEST'),
+       (16, 'chargers', 'los angeles', 'stub hub center', 'AFC', 'WEST'),
+       (17, 'cowboys', 'dallas', 'at&t stadium', 'NFC', 'EAST'),
+       (18, 'giants', 'new york', 'metlife stadium', 'NFC', 'EAST'),
+       (19, 'commanders', 'washington', 'fedex field', 'NFC', 'EAST'),
+       (20, 'eagles', 'philadelphia', 'lincoln financial field', 'NFC', 'EAST'),
+       (21, 'packers', 'green bay', 'lambeau field', 'NFC', 'NORTH'),
+       (22, 'lions', 'detroit', 'ford field', 'NFC', 'NORTH'),
+       (23, 'vikings', 'minnesota', 'u.s. bank stadium', 'NFC', 'NORTH'),
+       (24, 'bears', 'chicago', 'soldier field', 'NFC', 'NORTH'),
+       (25, 'falcons', 'atlanta', 'mercedes-benz stadium', 'NFC', 'SOUTH'),
+       (26, 'buccaneers', 'tampa bay', 'raymond james stadium', 'NFC', 'SOUTH'),
+       (27, 'panthers', 'carolina', 'bank of america stadium', 'NFC', 'SOUTH'),
+       (28, 'saints', 'new orleans', 'mercedes-benz super dome', 'NFC', 'SOUTH'),
+       (29, 'cardinals', 'arizona', 'university of phoenix stadium', 'NFC', 'WEST'),
+       (30, '49ers', 'san francisco', 'levis stadium', 'NFC', 'WEST'),
+       (31, 'seahawks', 'seattle', 'century link field', 'NFC', 'WEST'),
+       (32, 'rams', 'los angeles', 'los angeles memorial coliseum', 'NFC', 'WEST');

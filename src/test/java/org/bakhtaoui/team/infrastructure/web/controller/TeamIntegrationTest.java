@@ -21,7 +21,7 @@ import static org.bakhtaoui.shared.enums.Conference.NFC;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestTestClient
-class TeamControllerIntegrationTest extends AbstractPostgresContainerTest {
+class TeamIntegrationTest extends AbstractPostgresContainerTest {
 
     @Autowired
     private RestTestClient restClient;

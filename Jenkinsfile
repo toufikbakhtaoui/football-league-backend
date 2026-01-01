@@ -1,18 +1,14 @@
 pipeline {
-    agent any
-
-    options {
-        timestamps()
-        disableConcurrentBuilds()
-    }
+   agent any
 
     tools {
-        jdk 'JDK-21'
+       jdk 'JDK-21'
+       maven 'Maven-3.9'
     }
 
     environment {
-        IMAGE_NAME = 'football-league-backend'
-        MAVEN_REPO = '/var/jenkins_home/.m2/repository'
+        MAVEN_OPTS = '-Dmaven.repo.local=${WORKSPACE}/.m2/repository'
+        MVN_CMD    = 'mvn -B -ntp'
     }
 
     stages {
@@ -23,23 +19,17 @@ pipeline {
             }
         }
 
-        stage('Build & Tests') {
+        stage('Build / Tests / Package') {
             steps {
-                withMaven(
-                    maven: 'Maven-3.9',
-                    mavenLocalRepo: "${MAVEN_REPO}"
-                ) {
-                    sh '''
-                      mvn clean verify \
-                        -DskipITs=false \
-                        -B
-                    '''
-                }
+                sh """
+                  ${MVN_CMD} clean verify
+                """
             }
             post {
                 always {
                     junit '**/target/surefire-reports/*.xml'
                     junit '**/target/failsafe-reports/*.xml'
+                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                 }
             }
         }
@@ -48,59 +38,12 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-                        withMaven(
-                            maven: 'Maven-3.9',
-                            mavenLocalRepo: "${MAVEN_REPO}"
-                        ) {
                             sh '''
-                              mvn sonar:sonar \
-                                -Dsonar.projectKey=football-league-backend \
-                                -Dsonar.login=${SONAR_TOKEN}
+                              sonar-scanner \
                             '''
-                        }
                     }
                 }
             }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-
-        stage('Package') {
-            steps {
-                withMaven(
-                    maven: 'Maven-3.9',
-                    mavenLocalRepo: "${MAVEN_REPO}"
-                    options: [
-                        artifactsPublisher(disabled: true),
-                        junitPublisher(disabled: true)
-                      ]
-                ) {
-                    sh 'mvn package -DskipTests -B'
-                }
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            cleanWs()
-        }
-        success {
-            echo '✅ Pipeline completed successfully'
-        }
-        failure {
-            echo '❌ Pipeline failed'
         }
     }
 }

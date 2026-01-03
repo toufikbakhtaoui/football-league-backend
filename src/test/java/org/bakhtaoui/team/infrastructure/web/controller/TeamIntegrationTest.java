@@ -54,7 +54,7 @@ class TeamIntegrationTest extends AbstractPostgresContainerTest {
                 )
         );
 
-        //WHen + Then
+        //When + Then
         restClient.get()
                 .uri("/teams")
                 .exchange()

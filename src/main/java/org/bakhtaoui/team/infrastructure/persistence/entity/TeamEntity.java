@@ -19,6 +19,7 @@ public class TeamEntity {
     private Long id;
 
     private String name;
+    private String code;
     private String city;
     private String stadium;
 

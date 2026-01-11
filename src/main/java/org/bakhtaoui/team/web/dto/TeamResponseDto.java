@@ -1,13 +1,14 @@
-package org.bakhtaoui.team.application.dto;
+package org.bakhtaoui.team.web.dto;
 
 import lombok.Builder;
 import org.bakhtaoui.shared.enums.Conference;
 import org.bakhtaoui.shared.enums.Division;
 
 @Builder
-public record TeamDto(
+public record TeamResponseDto(
         Long id,
         String name,
+        String code,
         String city,
         String stadium,
         Conference conference,

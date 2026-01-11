@@ -9,6 +9,7 @@ import org.bakhtaoui.shared.enums.Division;
 public record Team(
         TeamIdentifier id,
         String name,
+        String code,
         String city,
         String stadium,
         Conference conference,

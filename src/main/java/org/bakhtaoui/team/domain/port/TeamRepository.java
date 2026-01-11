@@ -1,4 +1,4 @@
-package org.bakhtaoui.team.domain.repository;
+package org.bakhtaoui.team.domain.port;
 
 import org.bakhtaoui.team.domain.model.Team;
 
